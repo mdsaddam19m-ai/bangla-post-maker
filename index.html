@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bangla Post Maker</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f0f5f2;color:#222}
+header{background:#14532d;color:white;text-align:center;padding:25px 10px}
+h1{margin:0}
+main{max-width:500px;margin:20px auto;padding:18px;background:white;border-radius:15px}
+select,textarea,button{width:100%;box-sizing:border-box;padding:13px;margin:8px 0;border-radius:8px;font-size:16px}
+select,textarea{border:1px solid #ccc}
+button{background:#16834a;color:white;border:0;font-weight:bold}
+#result{white-space:pre-wrap;background:#f1f5f2;padding:14px;border-radius:8px;min-height:50px}
+footer{text-align:center;padding:20px;color:#666}
+</style>
+</head>
+<body>
+<header>
+<h1>বাংলা পোস্ট মেকার</h1>
+<p>তৈরি করো মনের মতো বাংলা ক্যাপশন ❤️</p>
+</header>
+<main>
+<h3>কী ধরনের ক্যাপশন চাও?</h3>
+<select id="type">
+<option value="sad">💔 স্যাড ক্যাপশন</option>
+<option value="funny">😂 ফানি পোস্ট</option>
+<option value="love">❤️ ভালোবাসা</option>
+<option value="islamic">🕌 ইসলামিক পোস্ট</option>
+<option value="attitude">😎 অ্যাটিটিউড</option>
+<option value="friend">🤝 বন্ধুত্ব</option>
+</select>
+<textarea id="topic" rows="3" placeholder="কী নিয়ে পোস্ট চাও? (ঐচ্ছিক)"></textarea>
+<button onclick="makePost()">✨ ক্যাপশন তৈরি করো</button>
+<div id="result">তোমার ক্যাপশন এখানে দেখা যাবে।</div>
+<button onclick="copyPost()">📋 ক্যাপশন কপি করো</button>
+</main>
+<footer>© Bangla Post Maker</footer>
+<script>
+const posts={
+sad:[
+"হাসির আড়ালেও কিছু না বলা কষ্ট লুকিয়ে থাকে। 💔",
+"সবাই পাশে থাকার কথা বলে, কিন্তু সময়ে পাশে থাকে কজন? 🥀",
+"কিছু অনুভূতি মুখে বলা যায় না, শুধু নীরবে সহ্য করতে হয়।"
+],
+funny:[
+"বই খুললেই ঘুম আসে, মোবাইল নিলেই ঘুম পালায়! 😂📱",
+"আমার জীবনেও সুখ আছে, শুধু সে ভুল ঠিকানায় থাকে! 🤣",
+"পকেট খালি, কিন্তু স্বপ্নগুলো VIP! 😎"
+],
+love:[
+"সত্যিকারের ভালোবাসা কথায় নয়, যত্নে প্রকাশ পায়। ❤️",
+"প্রিয় মানুষটির একটু সময়ও অনেক আনন্দ এনে দেয়। 🌸",
+"ভালোবাসা মানে সম্মান, বিশ্বাস আর পাশে থাকা।"
+],
+islamic:[
+"আল্লাহর ওপর ভরসা রাখো, নিশ্চয়ই তিনি উত্তম পরিকল্পনাকারী। 🤲",
+"ছোট ছোট ভালো কাজও অনেক সওয়াবের কারণ হতে পারে। 🌙",
+"নামাজ হোক জীবনের প্রশান্তি আর আল্লাহর নৈকট্য লাভের মাধ্যম।"
+],
+attitude:[
+"নিজের পথে চলি, নিজের স্বপ্ন নিয়ে বাঁচি। 😎",
+"কথা কম, কাজ দিয়ে পরিচয় দিতে ভালোবাসি। 🔥",
+"নিজেকে গড়ছি, কারও সঙ্গে প্রতিযোগিতা নয়।"
+],
+friend:[
+"বন্ধুত্বের সৌন্দর্য হলো বিপদে পাশে থাকা। 🤝",
+"সত্যিকারের বন্ধু দূরে থেকেও আপন থাকে। ❤️",
+"বন্ধু মানে হাসি, স্মৃতি আর বিশ্বাসের গল্প।"
+]};
+function makePost(){
+let a=posts[document.getElementById('type').value];
+let topic=document.getElementById('topic').value.trim();
+let p=a[Math.floor(Math.random()*a.length)];
+document.getElementById('result').textContent=topic?topic+" নিয়ে:\n"+p:p;
+}
+function copyPost(){
+let t=document.getElementById('result').textContent;
+if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>alert('কপি হয়েছে!')).catch(()=>alert(t));}
+else alert(t);
+}
+</script>
+</body>
+</html>
